@@ -1,28 +1,30 @@
 #include "Group.h"
 
 // Деструктор для очистки памяти
-Group::~Group()
+SmirnovGroup::~SmirnovGroup()
 {
     clear(); // Освобождение всей выделенной памяти
 }
 
 // Функция добавления элемента
-void Group::addMember(Human *human)
+void SmirnovGroup::addMember()
 {
-    members.push_back(human);
+    SmirnovHuman *currentHuman = new SmirnovHuman();  //Создание указателя на нового человека
+    currentHuman->create(); //Создание человека
+    members.push_back(currentHuman); //Добавление указателя в массив
 }
 
 // Функция вывода списка на экран
-void Group::printAll() const
+void SmirnovGroup::printAll()
 {
-    for (const Human *human : members)
+    for (const SmirnovHuman *human : members)
     {
         std::cout << *human << std::endl;
     }
 }
 
 // Функция записи списка в файловый поток
-void Group::saveToFile(const std::string &filename) const
+void SmirnovGroup::saveToFile(const std::string &filename)
 {
     // Открываем файл на запись
     std::ofstream file(filename);
@@ -30,7 +32,7 @@ void Group::saveToFile(const std::string &filename) const
     // Проверка открытие файла
     if (file.is_open())
     {
-        for (Human *human : members)
+        for (SmirnovHuman *human : members)
         {
             // Сохранение данных о человеке в файл
             human->save(file);
@@ -46,7 +48,7 @@ void Group::saveToFile(const std::string &filename) const
 }
 
 // Функция чтения списка из файлового потока
-void Group::loadFromFile(const std::string &filename)
+void SmirnovGroup::loadFromFile(const std::string &filename)
 {
     // Открываем файл на чтение
     std::ifstream ifs(filename);
@@ -57,16 +59,17 @@ void Group::loadFromFile(const std::string &filename)
         clear(); // Очистить текущий список перед загрузкой новых данных
         while (true)
         {
-            Human *human = new Human(); // Создание нового экземпляра человека
+            SmirnovHuman *human = new SmirnovHuman(); // Создание указателя на новый экземпляр человека
             human->download(ifs); // Загрузка данных о человеке
 
             // Проверка на чтение данных
             if (ifs)
             { 
-                addMember(human); // Добавление указателя в список
+                members.push_back(human);
             }
             else
             {
+                delete human;
                 break;
             }
         }
@@ -81,9 +84,9 @@ void Group::loadFromFile(const std::string &filename)
 }
 
 // Функция очистки списка
-void Group::clear()
+void SmirnovGroup::clear()
 {
-    for (Human *human : members)
+    for (SmirnovHuman *human : members)
     {
         delete human; // Удаление каждого объекта Human
     }

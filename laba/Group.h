@@ -3,23 +3,23 @@
 #include <fstream>
 #include "Human.h"
 
-class Group
+class SmirnovGroup
 {
 private:
-    std::vector<Human *> members; // Вектор указателей на объекты Human
+    std::vector<SmirnovHuman *> members; // Вектор указателей на объекты Human
 
 public:
     // Деструктор для очистки памяти
-    ~Group();
+    ~SmirnovGroup();
 
     // Функция добавления элемента
-    void addMember(Human *human);
+    void addMember();
 
     // Функция вывода списка на экран
-    void printAll() const;
+    void printAll();
 
     // Функция записи списка в файловый поток
-    void saveToFile(const std::string &filename) const;
+    void saveToFile(const std::string &filename);
 
     // Функция чтения списка из файлового потока
     void loadFromFile(const std::string &filename);

@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-class Human
+class SmirnovHuman
 {
 private:
     std::string name; // Имя
@@ -22,5 +22,5 @@ public:
     void download(std::ifstream& ifs);
 
     // Оператор вывода данных о человеке
-    friend std::ostream& operator << (std::ostream& out, const Human& h);
+    friend std::ostream& operator << (std::ostream& out, const SmirnovHuman& h);
 };

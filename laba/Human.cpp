@@ -3,7 +3,7 @@
 
 
 // Функция создания человека
-void Human::create()
+void SmirnovHuman::create()
 {
     std::cout << "Enter human name" << std::endl;
     name = read_string();
@@ -17,7 +17,7 @@ void Human::create()
 
 
 // Функция записи данных человека в файл
-void Human::save(std::ofstream& ofs)
+void SmirnovHuman::save(std::ofstream& ofs)
 {
     ofs << name << std::endl;
     ofs << age << std::endl;
@@ -27,7 +27,7 @@ void Human::save(std::ofstream& ofs)
 
 
 // Функция считывания данных человека из файла
-void Human::download(std::ifstream& ifs)
+void SmirnovHuman::download(std::ifstream& ifs)
 {
     // считываем данные в поток
     getline(ifs, name); 
@@ -39,7 +39,7 @@ void Human::download(std::ifstream& ifs)
 
 
 // Оператор вывода данных о человеке
-std::ostream& operator << (std::ostream& out, const Human& h)
+std::ostream& operator << (std::ostream& out, const SmirnovHuman& h)
 {
     out << "------------------------------" << std::endl;
     out << "Your Human:" << std::endl;
