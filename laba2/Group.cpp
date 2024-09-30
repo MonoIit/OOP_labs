@@ -1,23 +1,14 @@
 #include "Group.h"
 
-// Деструктор для очистки памяти
-SmirnovGroup::~SmirnovGroup()
-{
-    clear(); // Освобождение всей выделенной памяти
-}
+SmirnovGroup::~SmirnovGroup(){}
 
 // Функция добавления элемента
-void SmirnovGroup::addMember()
-{
-    SmirnovHuman *currentHuman = new SmirnovHuman();  //Создание указателя на нового человека
-    currentHuman->create(); //Создание человека
-    members.push_back(currentHuman); //Добавление указателя в массив
-}
+
 
 // Функция вывода списка на экран
 void SmirnovGroup::printAll()
 {
-    for (const SmirnovHuman *human : members)
+    for (const auto& human: members)
     {
         std::cout << *human << std::endl;
     }
@@ -32,14 +23,9 @@ void SmirnovGroup::saveToFile(const std::string &filename)
     // Проверка открытие файла
     if (file.is_open())
     {
-        for (SmirnovHuman *human : members)
-        {
-            // Сохранение данных о человеке в файл
-            human->save(file);
-        }
+        boost::archive::text_oarchive oa(file);
 
-        // Закрытие файла
-        file.close();
+        oa << members;
     }
     else
     {
@@ -57,25 +43,10 @@ void SmirnovGroup::loadFromFile(const std::string &filename)
     if (ifs.is_open())
     {
         clear(); // Очистить текущий список перед загрузкой новых данных
-        while (true)
-        {
-            SmirnovHuman *human = new SmirnovHuman(); // Создание указателя на новый экземпляр человека
-            human->download(ifs); // Загрузка данных о человеке
+        
+        boost::archive::text_iarchive ia(ifs);
 
-            // Проверка на чтение данных
-            if (ifs)
-            { 
-                members.push_back(human);
-            }
-            else
-            {
-                delete human;
-                break;
-            }
-        }
-
-        // Закрытие файла
-        ifs.close();
+        ia >> members;
     }
     else
     {
@@ -86,11 +57,5 @@ void SmirnovGroup::loadFromFile(const std::string &filename)
 // Функция очистки списка
 void SmirnovGroup::clear()
 {
-    for (SmirnovHuman *human : members)
-    {
-        delete human; // Удаление каждого объекта Human
-    }
-
-    // Очищаем вектор указателей
     members.clear(); 
 }

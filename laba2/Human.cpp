@@ -16,37 +16,33 @@ void SmirnovHuman::create()
 }
 
 
-// Функция записи данных человека в файл
-void SmirnovHuman::save(std::ofstream& ofs)
+
+template<class Archive>
+void SmirnovHuman::serialize(Archive& ar, const unsigned int version)
 {
-    ofs << name << std::endl;
-    ofs << age << std::endl;
-    ofs << height << std::endl;
-    ofs << weight << std::endl;
+    ar & name;
+    ar & age;
+    ar & height;
+    ar & weight;
 }
 
 
-// Функция считывания данных человека из файла
-void SmirnovHuman::download(std::ifstream& ifs)
+// Функция для вывода данных в поток
+void SmirnovHuman::print(std::ostream& out) const
 {
-    // считываем данные в поток
-    getline(ifs, name); 
-    ifs >> age >> height >> weight;
-
-    // Пропускаем символ новой строки после считывания
-    ifs.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+    out << "------------------------------" << std::endl;
+    out << "name: " << name << std::endl;
+    out << "age: " << age << std::endl;
+    out << "height: " << height << std::endl;
+    out << "weigth: " << weight << std::endl;
 }
 
 
 // Оператор вывода данных о человеке
 std::ostream& operator << (std::ostream& out, const SmirnovHuman& h)
 {
-    out << "------------------------------" << std::endl;
-    out << "Your Human:" << std::endl;
-    out << "name: " << h.name << std::endl;
-    out << "age: " << h.age << std::endl;
-    out << "height: " << h.height << std::endl;
-    out << "weigth: " << h.weight << std::endl;
-    out << "------------------------------" << std::endl;
-    return out;
+    h.print(out);
+    return out; 
 }
+
+BOOST_CLASS_EXPORT(SmirnovHuman)

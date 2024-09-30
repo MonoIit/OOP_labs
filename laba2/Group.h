@@ -1,18 +1,18 @@
-#include <vector>
-#include <iostream>
-#include <fstream>
+#include "pch.h"
 #include "Human.h"
+#include "Student.h"
 
 class SmirnovGroup
 {
 private:
-    std::vector<SmirnovHuman *> members; // Вектор указателей на объекты Human
+    std::vector<std::shared_ptr<SmirnovHuman>> members; // Вектор указателей на объекты Human
 
 public:
     // Деструктор для очистки памяти
     ~SmirnovGroup();
 
     // Функция добавления элемента
+    template<typename T>
     void addMember();
 
     // Функция вывода списка на экран
@@ -27,3 +27,11 @@ public:
     // Функция очистки списка
     void clear();
 };
+
+template <typename T>
+void SmirnovGroup::addMember()
+{
+    std::shared_ptr<SmirnovHuman> member = std::make_shared<T>();  //Создание указателя на нового человека
+    member->create(); //Создание человека
+    members.push_back(member); //Добавление указателя в массив
+}
