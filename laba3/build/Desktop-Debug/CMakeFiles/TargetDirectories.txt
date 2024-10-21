@@ -1,0 +1,9 @@
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/laba3.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/install.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/laba3_autogen_timestamp_deps.dir
+/home/monolit/plusplus/OOP_labs/laba3/build/Desktop-Debug/CMakeFiles/laba3_autogen.dir
